@@ -1,8 +1,27 @@
 {
   description = "My Basic System Configuration";
 
-  outputs = { self, nixpkgs }: {
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      defaultPackage.x86_64-linux = home-manager.defaultPackage.x86_64-linux;
+      defaultPackage.x86_64-darwin = home-manager.defaultPackage.x86_64-darwin;
+      homeConfigurations.sirbubbls = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./configurations/home.nix
+        ];
+      };
+    };
 }
