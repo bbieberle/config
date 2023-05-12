@@ -10,6 +10,7 @@
     gcc
     exa
     fzf
+    gcc
     cowsay
     file
     thefuck
@@ -17,7 +18,6 @@
     unzip
     kubectl
   ];
-
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
   programs.starship = {
@@ -30,26 +30,31 @@
     };
     zplug = {
       enable = true;
-      #plugins = [
-        #{
-          #name = "zsh-nix-shell";
-          #file = "nix-shell.plugin.zsh";
-          #src = pkgs.fetchFromGitHub {
-            #owner = "chisui";
-            #repo = "zsh-nix-shell";
-            #rev = "v0.5.0";
-            #sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
-          #};
-        #}
-      #];
+      plugins = [
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zsh-users/zsh-syntax-highlighting"; }
+        { name = "b4b4r07/enhancd"; }
+      ];
     };
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.5.0";
+          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+        };
+      }
+    ];
     enableCompletion = true;
     enableAutosuggestions = true;
   };
   programs.git = {
     enable = true;
     userName = "Lucas Sas Brunschier";
-    userEmail = "lucas.sas-brunschier@efs-techhub.com";
+    userEmail = "lucassas@live.de";
     extraConfig = {
       rebase = {
         autostash = true;
@@ -68,33 +73,24 @@
   };
   programs.tmux = {
     enable = true;
-    clock24 = true;
+    secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
-      sensible
-      {
-        plugin = dracula;
-        extraConfig = ''
-          				set -g @dracula-show-battery false
-          				set -g @dracula-show-powerline true
-          				set -g @dracula-refresh-rate 10
-          			'';
-      }
-      sensible
       yank
-      {
-        plugin = dracula;
-        extraConfig = ''
-          				set -g @dracula-show-battery false
-          				set -g @dracula-show-powerline true
-          				set -g @dracula-refresh-rate 10
-          			'';
-      }
+      sensible
+      nord
     ];
     extraConfig = ''
       set-option -ga terminal-overrides ",xterm-256color:Tc"
+      setw -g pane-base-index 1
       set -g mouse on
       set -g base-index 1
-      setw -g pane-base-index 1
+      bind e select-pane -U
+      bind n select-pane -D
+      bind h select-pane -L
+      bind i select-pane -R
+      bind v split-window -h
+      bind s split-window -v
+      bind k kill-pane
     '';
   };
   programs.neovim = {
