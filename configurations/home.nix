@@ -9,13 +9,17 @@
     zk
     gcc
     exa
+    nodejs
     fzf
     gcc
     cowsay
+    fd
     file
     thefuck
     zsh-syntax-highlighting
     unzip
+    # Kubernetes Tools
+    kubectx
     kubectl
   ];
   home.stateVersion = "22.11";
@@ -27,6 +31,7 @@
     enable = true;
     shellAliases = {
       cl = "clear";
+      ls = "exa";
     };
     zplug = {
       enable = true;
