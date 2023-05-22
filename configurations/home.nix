@@ -113,18 +113,18 @@
     viAlias = true;
     vimAlias = true;
     plugins = [
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-        p.c
-        p.yaml
-        p.hcl
-        p.rust
-        p.python
-      ]))
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
-  };
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
-  };
-}
+      extraConfig = ''
+        ${builtins.readFile ./nvim/init.vim}
+      '';
+      extraLuaConfig = ''
+        ${builtins.readFile ./nvim/init.lua}
+      '';
+    };
+    services.gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+    };
+  }
