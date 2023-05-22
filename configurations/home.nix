@@ -18,20 +18,26 @@
     thefuck
     zsh-syntax-highlighting
     unzip
+    progress
+    python310
+    python310Packages.pip
+    python310Packages.protobuf
     # Kubernetes Tools
     kubectx
     kubectl
+    kubelogin
+    kubernetes-helm
   ];
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
-  programs.starship = {
-    enable = true;
-  };
   programs.zsh = {
     enable = true;
     shellAliases = {
       cl = "clear";
       ls = "exa";
+    };
+    localVariables = {
+      EDITOR = "nvim";
     };
     zplug = {
       enable = true;
@@ -39,6 +45,7 @@
         { name = "zsh-users/zsh-autosuggestions"; }
         { name = "zsh-users/zsh-syntax-highlighting"; }
         { name = "b4b4r07/enhancd"; }
+        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
       ];
     };
     plugins = [
@@ -53,6 +60,9 @@
         };
       }
     ];
+    initExtra = ''
+      ${builtins.readFile ./p10k.zsh}
+    '';
     enableCompletion = true;
     enableAutosuggestions = true;
   };
@@ -106,6 +116,7 @@
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
         p.c
         p.yaml
+        p.hcl
         p.rust
         p.python
       ]))
