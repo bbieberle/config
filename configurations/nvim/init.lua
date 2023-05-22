@@ -14,6 +14,96 @@ vim.opt.rtp:prepend(lazypath)
 vim.opt.signcolumn = "yes"
 vim.opt.expandtab = true
 
+
+local setup_lsp_configs = function()
+        local lspconfig = require('lspconfig')
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+                properties = {
+                        'documentation',
+                        'detail',
+                        'additionalTextEdits',
+                }
+        }
+        lspconfig.pyright.setup {}
+        lspconfig.clangd.setup {}
+        lspconfig.cmake.setup {}
+        lspconfig.dockerls.setup {}
+        lspconfig.graphql.setup {}
+        lspconfig.jdtls.setup {}
+        lspconfig.jsonls.setup {}
+        lspconfig.sqlls.setup {}
+        --lspconfig.helm_ls.setup {} Experimental
+        lspconfig.azure_pipelines_ls.setup {}
+        lspconfig.bashls.setup {}
+        lspconfig.terraformls.setup {}
+        lspconfig.rnix.setup {}
+        lspconfig.rust_analyzer.setup {
+                settings = {
+                        ["rust-analyzer"] = {
+                                assist = {
+                                        importEnforceGranularity = true,
+                                        importPrefix = "crate"
+                                },
+                                cargo = {
+                                        allFeatures = true,
+                                        buildScripts = { enable = true }
+                                },
+                                completion = {
+                                        autoimport = {
+                                                enable = true
+                                        }
+                                },
+                                procMacro = {
+                                        enable = true
+                                },
+                                checkOnSave = {
+                                        command = "clippy"
+                                },
+                                updates = {
+                                        channel = "nightly"
+                                }
+                        }
+                },
+                capabilities = capabilities
+        }
+        lspconfig.lua_ls.setup {
+                settings = {
+                        Lua = {
+                                diagnostics = {
+                                        globals = { 'vim' }
+                                }
+                        }
+                }
+        }
+        lspconfig.yamlls.setup {
+                settings = {
+                        yaml = {
+                                format = {
+                                        enable = true
+                                },
+                                keyOrdering = false,
+                                validate = true,
+                                schemaStore = {
+                                        enable = true
+                                }
+                        }
+                }
+        }
+        lspconfig.tsserver.setup {
+                settings = {
+                        typescript = {
+                                format = {
+                                        indentSize = 4,
+                                        convertTabsToSpaces = true,
+                                        trimTrailingWhitespace = true,
+                                        semicolons = "remove"
+                                }
+                        }
+                }
+        }
+end
+
 -- Configuration
 local telescope_conf = {
         defaults = {
@@ -126,87 +216,16 @@ local lualine_conf = {
 }
 
 require("lazy").setup({
-        {
-                "neovim/nvim-lspconfig",
-                config = function()
-                        local lspconfig = require('lspconfig')
-
-                        local capabilities = vim.lsp.protocol.make_client_capabilities()
-                        capabilities.textDocument.completion.completionItem.resolveSupport = {
-                                properties = {
-                                        'documentation',
-                                        'detail',
-                                        'additionalTextEdits',
-                                }
+        { 
+                "williamboman/mason-lspconfig.nvim", 
+                config = function ()
+                        require("mason-lspconfig").setup {
+                                ensure_installed = { "lua_ls", "rust_analyzer" },
+                                automatic_installation = true
                         }
-                        lspconfig.pyright.setup {}
-                        lspconfig.terraformls.setup {}
-                        lspconfig.rnix.setup {}
-                        lspconfig.rust_analyzer.setup {
-                                settings = {
-                                        ["rust-analyzer"] = {
-                                                assist = {
-                                                        importEnforceGranularity = true,
-                                                        importPrefix = "crate"
-                                                },
-                                                cargo = {
-                                                        allFeatures = true,
-                                                        buildScripts = { enable = true }
-                                                },
-                                                completion = {
-                                                        autoimport = {
-                                                                enable = true
-                                                        }
-                                                },
-                                                procMacro = {
-                                                        enable = true
-                                                },
-                                                checkOnSave = {
-                                                        command = "clippy"
-                                                },
-                                                updates = {
-                                                        channel = "nightly"
-                                                }
-                                        }
-                                },
-                                capabilities = capabilities
-                        }
-                        lspconfig.lua_ls.setup {
-                                settings = {
-                                        Lua = {
-                                                diagnostics = {
-                                                        globals = { 'vim' }
-                                                }
-                                        }
-                                }
-                        }
-                        lspconfig.yamlls.setup {
-                                settings = {
-                                        yaml = {
-                                                format = {
-                                                        enable = true
-                                                },
-                                                keyOrdering = false,
-                                                validate = true,
-                                                schemaStore = {
-                                                        enable = true
-                                                }
-                                        }
-                                }
-                        }
-                        lspconfig.tsserver.setup {
-                                settings = {
-                                        typescript = {
-                                                format = {
-                                                        indentSize = 4,
-                                                        convertTabsToSpaces = true,
-                                                        trimTrailingWhitespace = true,
-                                                        semicolons = "remove"
-                                                }
-                                        }
-                                }
-                        }
-                end
+                        setup_lsp_configs()
+                end,
+                dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" } 
         },
         {
                 "hrsh7th/nvim-cmp",
