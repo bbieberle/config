@@ -355,6 +355,7 @@ require("lazy").setup({
         { 'Darazaki/indent-o-matic',  config = true },
         { 'gbprod/yanky.nvim',        config = true, opts = {} },
         { 'simrat39/rust-tools.nvim', config = true },
+        { 'akinsho/toggleterm.nvim', config = true, opts = { open_mapping = [[<c-t>]]} },
         {
                 'kylechui/nvim-surround',
                 event = "VeryLazy",
