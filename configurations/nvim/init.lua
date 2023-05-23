@@ -33,7 +33,6 @@ local setup_lsp_configs = function()
         lspconfig.jdtls.setup {}
         lspconfig.jsonls.setup {}
         lspconfig.sqlls.setup {}
-        --lspconfig.helm_ls.setup {} Experimental
         lspconfig.azure_pipelines_ls.setup {}
         lspconfig.bashls.setup {}
         lspconfig.terraformls.setup {}
@@ -167,10 +166,7 @@ local nvim_tree_conf = {
 
 local nvim_treesitter_conf = {
         indent = { enable = true },
-        ensure_installed = { "terraform",
-                "rust", "python", "css", "json", "html", "toml", "make", "scss", "typescript",
-                "yaml", "vim", "lua" },
-        auto_install = true,
+        auto_install = false,
         highlight = { enable = true, disable = { '' }, additional_vim_regex_highlighting = false }
 }
 
@@ -220,8 +216,7 @@ require("lazy").setup({
                 "williamboman/mason-lspconfig.nvim", 
                 config = function ()
                         require("mason-lspconfig").setup {
-                                ensure_installed = { "lua_ls", "rust_analyzer" },
-                                automatic_installation = true
+                                automatic_installation = { exclude = { "rust-analyzer" } } 
                         }
                         setup_lsp_configs()
                 end,

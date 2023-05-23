@@ -21,6 +21,9 @@
     progress
     python310
     python310Packages.pip
+    rustc
+    clippy
+    rust-analyzer
     python310Packages.protobuf
     # Kubernetes Tools
     kubectx
