@@ -61,6 +61,7 @@
       }
     ];
     initExtra = ''
+      ${builtins.readFile ./config.zsh}
       ${builtins.readFile ./p10k.zsh}
     '';
     enableCompletion = true;
