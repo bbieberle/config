@@ -4,6 +4,8 @@
   home.username = "sirbubbls";
   home.homeDirectory = "/home/sirbubbls";
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     ripgrep
     zk
@@ -19,6 +21,7 @@
     zsh-syntax-highlighting
     unzip
     progress
+    (nerdfonts.override { fonts = [ "Iosevka" ]; })
     python310
     python310Packages.pip
     rustc
@@ -36,6 +39,22 @@
   ];
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
+
+  # Terminal Emulators
+  programs.kitty = {
+    enable = true;
+    font = { name = "Iosevka Term"; size = 17; };
+    theme = "One Dark";
+    settings = {
+      enable_audio_bell = false;
+      confirm_os_window_close = -1;
+    };
+    keybindings = {
+      "ctrl+equal" = "change_font_size all +2.0";
+      "ctrl+minus" = "change_font_size all -2.0";
+    };
+  };
+
   programs.zsh = {
     enable = true;
     shellAliases = {
