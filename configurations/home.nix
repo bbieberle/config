@@ -27,6 +27,9 @@
     kubectl
     kubelogin
     kubernetes-helm
+    # Build utilities
+    gnumake
+    cargo
   ];
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
