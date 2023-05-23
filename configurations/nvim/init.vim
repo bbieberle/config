@@ -72,3 +72,4 @@ noremap <C-E> <C-K>
 
 vnoremap t <Plug>(easymotion-s2)
 nnoremap t <Plug>(easymotion-s2)
+setlocal spell spelllang=en_us
