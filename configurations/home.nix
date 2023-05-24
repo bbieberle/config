@@ -88,6 +88,7 @@
     initExtra = ''
       ${builtins.readFile ./p10k.zsh}
       ${builtins.readFile ./config.zsh}
+      ${builtins.readFile ./zsh/wsl.zsh}
     '';
     enableCompletion = true;
     enableAutosuggestions = true;
