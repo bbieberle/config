@@ -65,6 +65,7 @@ vnoremap <A-/> <plug>NERDCommenterToggle
 
 nnoremap <leader>gc <cmd>Git commit<cr>
 nnoremap <leader>gp <cmd>Git push<cr>
+nnoremap <leader>ct <cmd>TodoTelescope<cr>
 
 set number
 
