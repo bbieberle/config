@@ -15,6 +15,7 @@
     fzf
     gcc
     cowsay
+    kitty
     fd
     file
     thefuck
@@ -60,9 +61,11 @@
     shellAliases = {
       cl = "clear";
       ls = "exa";
+      vim = "nivm";
     };
     localVariables = {
       EDITOR = "nvim";
+      ZK_NOTEBOOK_DIR = "~/Notes";
     };
     zplug = {
       enable = true;
