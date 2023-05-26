@@ -8,3 +8,15 @@ if set WSL_DISTRO_NAME; then
       export DISPLAY=":0.0"
     fi
 fi
+
+# Automatically start a docker daemon process in the background if not already running.
+#
+# IMPORTANT
+# You'll need to modify the sudoers file (/etc/sudoers) file and add the line 
+# >>USERNAME<< ALL=(ALL) NOPASSWD: /usr/bin/dockerd
+# This will disable sudo password prompt. 
+RUNNING=`ps aux | grep dockerd | grep -v grep`
+if [ -z "$RUNNING" ]; then
+    sudo dockerd > /dev/null 2>&1 &
+    disown
+fi
