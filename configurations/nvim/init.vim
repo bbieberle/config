@@ -20,10 +20,13 @@ noremap <leader>ck <cmd>lua vim.lsp.buf.hover()<cr>
 noremap <leader>cd <cmd>Telescope lsp_definitions <cr>
 noremap <leader>gz = <cmd>lua require'telescope.builtin'.git_stash()<cr>
 noremap <leader>sp = <cmd>lua require'telescope.builtin'.live_grep()<cr>
-noremap <leader>cj = <cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<cr>
+noremap <leader>cj = <cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()<cr>
+noremap <leader>cJ = <cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<cr>
 noremap <leader>cx = <cmd>lua require'telescope.builtin'.diagnostics()<cr>
-noremap <leader>cR = <cmd>lua require'telescope.builtin'.lsp_references({layout_strategy='vertical', layout_config={width=0.8}})<cr>
-noremap <leader>ss <cmd>Telescope current_buffer_fuzzy_find <cr>
+noremap <leader>cr = <cmd>lua require'telescope.builtin'.lsp_references()<cr>
+noremap <leader>cR = <cmd>lua vim.lsp.buf.rename()<cr>
+noremap <leader>ss = <cmd>Telescope current_buffer_fuzzy_find <cr>
+noremap <leader>cl = <cmd>lua vim.lsp.codelens.get()<cr>
 
 nnoremap <leader>gn <cmd>Gitsigns next_hunk<cr>
 nnoremap <leader>ge <cmd>Gitsigns prev_hunk<cr>
