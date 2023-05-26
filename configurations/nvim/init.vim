@@ -6,6 +6,8 @@ set noswapfile
 noremap n j
 noremap e k
 noremap i l
+noremap k n
+noremap K N
 
 noremap u i
 noremap N J
