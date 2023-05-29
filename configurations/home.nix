@@ -3,7 +3,8 @@
 {
   home.username = "sirbubbls";
   home.homeDirectory = "/home/sirbubbls";
-  home.file.".config/alacritty/alacritty.yaml".source = ./alacritty.yaml;
+  home.file.".config/alacritty/alacritty.yaml".source = ./config/alacritty.yaml;
+  home.file.".config/kitty/kitty.conf".source = ./config/kitty.conf;
 
   fonts.fontconfig.enable = true;
 
@@ -16,7 +17,6 @@
     fzf
     gcc
     cowsay
-    kitty
     fd
     file
     thefuck
@@ -43,8 +43,9 @@
   programs.home-manager.enable = true;
 
   # Terminal Emulators
+  # HACK currently disable because of OpenGL issues on non NixOS systems
   programs.kitty = {
-    enable = true;
+    enable = false;
     font = { name = "Iosevka Term"; size = 17; };
     theme = "One Dark";
     settings = {
