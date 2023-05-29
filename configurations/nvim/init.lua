@@ -106,6 +106,12 @@ local setup_lsp_configs = function()
         lspconfig.rust_analyzer.setup {
                 settings = {
                         ["rust-analyzer"] = {
+                                imports = {
+                                        granularity = {
+                                                group = "module",
+                                        },
+                                        prefix = "self",
+                                },
                                 assist = {
                                         importEnforceGranularity = true,
                                         importPrefix = "crate"
@@ -192,11 +198,6 @@ local telescope_conf = {
                 }
         },
         extensions = {
-                lsp_handlers = {
-                        disable = {
-                                ['textDocument/codeAction'] = true,
-                        },
-                },
                 fzf = {
                         fuzzy = true,
                         override_generic_sorter = true,
@@ -464,4 +465,6 @@ vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set("n", "<c-e>", "<Plug>(YankyCycleForward)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleBackward)")
+
+-- set theme
 vim.cmd.colorscheme "catppuccin-frappe"

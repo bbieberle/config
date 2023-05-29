@@ -58,9 +58,9 @@ nnoremap <leader>ht <cmd>Telescope colorscheme<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 nnoremap <leader>gV <cmd>Gvdiffsplit<cr>
 
-nnoremap <C-_> <cmd>undo<cr>
-nnoremap <C-?> <cmd>redo<cr>
 nnoremap <leader>ci <cmd><buffer>lsp call execute('LspCodeActionSync source.organizeImports')<cr>
+noremap <C-_> <cmd>undo<cr>
+noremap <C-?> <cmd>redo<cr>
 
 "lua require("init")
 "colorscheme catppuccin-macchiato
