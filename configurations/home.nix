@@ -3,6 +3,7 @@
 {
   home.username = "sirbubbls";
   home.homeDirectory = "/home/sirbubbls";
+  home.file.".config/alacritty/alacritty.yaml".source = ./alacritty.yaml;
 
   fonts.fontconfig.enable = true;
 
