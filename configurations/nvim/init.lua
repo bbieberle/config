@@ -388,14 +388,18 @@ require("lazy").setup({
         {
                 "nvim-telescope/telescope.nvim",
                 tag = "0.1.1",
-                opts = telescope_conf,
-                dependencies = { 'nvim-lua/plenary.nvim', 'gbrlsnchs/telescope-lsp-handlers', 'sharkdp/fd',
-                        'nvim-tree/nvim-web-devicons', 'nvim-treesitter/nvim-treesitter' },
-                setup = function(args)
-                        local telescope = require 'telescope'
-                        telescope.load_extension('lsp_handlers')
-                        telescope.setup(args)
-                        telescope.load_extension('fzf')
+                dependencies = { 'nvim-lua/plenary.nvim', 'sharkdp/fd', 'nvim-tree/nvim-web-devicons',
+                        'nvim-treesitter/nvim-treesitter', 'nvim-telescope/telescope-ui-select.nvim' },
+                config = function()
+                        require("telescope").setup(telescope_conf)
+                        require("telescope").setup({
+                                extensions = {
+                                        ["ui-select"] = {
+                                                require("telescope.themes").get_dropdown {} }
+                                }
+                        })
+                        require("telescope").load_extension("ui-select")
+                        require("telescope").load_extension('fzf')
                 end
         },
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -424,15 +428,17 @@ require("lazy").setup({
         'preservim/nerdcommenter',
         'ryanoasis/vim-devicons',
         'easymotion/vim-easymotion',
-        { 'jose-elias-alvarez/null-ls.nvim', config = function ()
-                local null_ls = require("null-ls")
-                null_ls.setup {
-                        sources = {
-                                null_ls.builtins.code_actions.gitsigns,
-                                null_ls.builtins.diagnostics.eslint,
-                        },
-                }
-                end, 
+        {
+                'jose-elias-alvarez/null-ls.nvim',
+                config = function()
+                        local null_ls = require("null-ls")
+                        null_ls.setup {
+                                sources = {
+                                        null_ls.builtins.code_actions.gitsigns,
+                                        null_ls.builtins.diagnostics.eslint,
+                                },
+                        }
+                end,
         },
         { 'Darazaki/indent-o-matic',  config = true },
         { 'gbprod/yanky.nvim',        config = true, opts = {} },

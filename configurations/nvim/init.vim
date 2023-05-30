@@ -1,3 +1,4 @@
+let g:NERDCreateDefaultMappings = 0
 filetype plugin on
 let mapleader = " "
 set belloff=all  " disable bell sounds
@@ -79,3 +80,4 @@ noremap <C-E> <C-K>
 vnoremap t <Plug>(easymotion-s2)
 nnoremap t <Plug>(easymotion-s2)
 setlocal spell spelllang=en_us
+noremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
