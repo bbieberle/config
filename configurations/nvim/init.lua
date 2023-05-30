@@ -484,3 +484,4 @@ vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleBackward)")
 
 -- set theme
 vim.cmd.colorscheme "catppuccin-frappe"
+vim.diagnostic.config({ severity_sort = true })

@@ -81,3 +81,7 @@ vnoremap t <Plug>(easymotion-s2)
 nnoremap t <Plug>(easymotion-s2)
 setlocal spell spelllang=en_us
 noremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
+
+noremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
+noremap <leader>cn <cmd>lua vim.diagnostic.goto_next()<cr>
+noremap <leader>ce <cmd>lua vim.diagnostic.goto_prev()<cr>
