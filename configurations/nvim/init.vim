@@ -35,7 +35,7 @@ nnoremap <leader>ge <cmd>Gitsigns prev_hunk<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>ft <cmd>NvimTreeToggle<cr>
 nnoremap <leader>fs <cmd>w<cr>
-nnoremap <leader>bd <cmd>bd!<cr>
+noremap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 nnoremap <leader>gg <cmd>Git<cr>
 
 nnoremap <leader>gs <cmd>Gitsigns stage_hunk<cr>
@@ -60,11 +60,10 @@ nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 nnoremap <leader>gV <cmd>Gvdiffsplit<cr>
 
 nnoremap <leader>ci <cmd><buffer>lsp call execute('LspCodeActionSync source.organizeImports')<cr>
-noremap <C-_> <cmd>undo<cr>
-noremap <C-?> <cmd>redo<cr>
 
-"lua require("init")
-"colorscheme catppuccin-macchiato
+noremap <C-_> <cmd>undo<cr>
+inoremap <C-_> <cmd>undo<cr>
+noremap <C-?> <cmd>redo<cr>
 
 nnoremap <A-/> <plug>NERDCommenterToggle
 vnoremap <A-/> <plug>NERDCommenterToggle
@@ -85,3 +84,6 @@ noremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
 noremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
 noremap <leader>cn <cmd>lua vim.diagnostic.goto_next()<cr>
 noremap <leader>ce <cmd>lua vim.diagnostic.goto_prev()<cr>
+
+noremap <leader>nf <cmd>Telescope zk notes<cr>
+noremap <leader>nn <cmd>ZkNew<cr>
