@@ -122,7 +122,14 @@
     plugins = with pkgs.tmuxPlugins; [
       yank
       sensible
-      nord
+      {
+        plugin = dracula;
+        extraConfig = ''
+          				set -g @dracula-show-battery false
+          				set -g @dracula-show-powerline true
+          				set -g @dracula-refresh-rate 10
+          			'';
+      }
     ];
     extraConfig = ''
       set-option -ga terminal-overrides ",xterm-256color:Tc"
