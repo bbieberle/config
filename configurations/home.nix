@@ -11,11 +11,9 @@
   home.packages = with pkgs; [
     ripgrep
     zk
-    gcc
     exa
     nodejs
     fzf
-    gcc
     cowsay
     fd
     file
@@ -26,7 +24,7 @@
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     python310
     python310Packages.pip
-    rustc
+    #rustc
     clippy
     rust-analyzer
     python310Packages.protobuf
