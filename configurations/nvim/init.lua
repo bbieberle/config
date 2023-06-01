@@ -440,10 +440,18 @@ require("lazy").setup({
                         }
                 end,
         },
-        { 'Darazaki/indent-o-matic',  config = true },
-        { 'gbprod/yanky.nvim',        config = true, opts = {} },
-        { 'simrat39/rust-tools.nvim', config = true },
-        { 'akinsho/toggleterm.nvim',  config = true, opts = { open_mapping = [[<c-t>]] } },
+        { 'Darazaki/indent-o-matic', config = true },
+        { 'gbprod/yanky.nvim',       config = true, opts = {} },
+        {
+                'simrat39/rust-tools.nvim',
+                -- TODO currently type annotations don't work automatically because of mason-lspconfig  
+                opts = {
+                        inlay_hints = {
+                                auto = true,
+                        }
+                }
+        },
+        { 'akinsho/toggleterm.nvim', config = true, opts = { open_mapping = [[<c-t>]] } },
         {
                 "mickael-menu/zk-nvim",
                 config = function()
