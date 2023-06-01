@@ -24,7 +24,6 @@
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
     python310
     python310Packages.pip
-    #rustc
     clippy
     rust-analyzer
     python310Packages.protobuf
@@ -65,7 +64,6 @@
     };
     localVariables = {
       EDITOR = "nvim";
-      ZK_NOTEBOOK_DIR = "~/Notes";
     };
     zplug = {
       enable = true;
@@ -127,6 +125,7 @@
         extraConfig = ''
           				set -g @dracula-show-battery false
           				set -g @dracula-show-powerline true
+                  set -g @dracula-show-left-icon session
           				set -g @dracula-refresh-rate 10
           			'';
       }
@@ -143,6 +142,7 @@
       bind v split-window -h
       bind s split-window -v
       bind k kill-pane
+      bind r source-file ~/.config/tmux/tmux.conf
     '';
   };
   programs.neovim = {
@@ -152,16 +152,16 @@
     plugins = [
       pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
-      extraConfig = ''
-        ${builtins.readFile ./nvim/init.vim}
-      '';
-      extraLuaConfig = ''
-        ${builtins.readFile ./nvim/init.lua}
-      '';
-    };
-    services.gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-    };
-  }
+    extraConfig = ''
+      ${builtins.readFile ./nvim/init.vim}
+    '';
+    extraLuaConfig = ''
+      ${builtins.readFile ./nvim/init.lua}
+    '';
+  };
+  services.gpg-agent = {
+    enable = true;
+    defaultCacheTtl = 1800;
+    enableSshSupport = true;
+  };
+}
