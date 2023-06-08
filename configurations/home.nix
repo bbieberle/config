@@ -2,7 +2,7 @@
 {
   home.username = "sirbubbls";
   home.homeDirectory = "/home/sirbubbls";
-  home.file.".config/alacritty/alacritty.yaml".source = ./config/alacritty.yaml;
+  home.file.".config/alacritty/alacritty.yml".source = ./config/alacritty.yml;
   home.file.".config/kitty/kitty.conf".source = ./config/kitty.conf;
 
   fonts.fontconfig.enable = true;

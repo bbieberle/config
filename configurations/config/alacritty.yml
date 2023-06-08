@@ -1,0 +1,56 @@
+font:
+  normal:
+    family: VictorMono Nerd Font
+    style: Regular
+
+  bold:
+    family: VictorMono Nerd Font
+    style: Bold
+
+  italic:
+    family: VictorMono Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: VictorMono Nerd Font
+    style: Bold Italic
+
+  size: 18
+
+window:
+  option_as_alt: OnlyLeft
+  padding:
+    x: 14
+  opacity: 1.0
+key_bindings:
+  - { key: Slash, mods: Control, chars: "\x1f" }
+
+#colors:
+  #primary:
+    #background: '0x131a1c'
+    #foreground: '0x7f85a3'
+
+  #cursor:
+    #text:   '0x7f85a3'
+    #cursor: '0x808080'
+
+  #normal:
+    #black:   '0x444a73'
+    #red:     '0xff5370'
+    #green:   '0x4fd6be'
+    #yellow:  '0xffc777'
+    #blue:    '0x3e68d7'
+    #magenta: '0xfc7b7b'
+    #cyan:    '0x86e1fc'
+    #white:   '0xd0d0d0'
+
+  #bright:
+    #black:   '0x828bb8'
+    #red:     '0xff98a4'
+    #green:   '0xc3e88d'
+    #yellow:  '0xffc777'
+    #blue:    '0x82aaff'
+    #magenta: '0xff966c'
+    #cyan:    '0xb4f9f8'
+    #white:   '0x5f8787'
+
