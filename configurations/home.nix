@@ -21,11 +21,8 @@
     unzip
     progress
     (nerdfonts.override { fonts = [ "Iosevka" ]; })
-    python310
-    python310Packages.pip
     clippy
     rust-analyzer
-    python310Packages.protobuf
     # Kubernetes Tools
     kubectx
     kubectl
