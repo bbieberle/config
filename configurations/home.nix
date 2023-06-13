@@ -1,70 +1,46 @@
 { config, pkgs, ... }:
 {
-  home.username = "sirbubbls";
-  home.homeDirectory = "/home/sirbubbls";
-  home.file.".config/alacritty/alacritty.yml".source = ./config/alacritty.yml;
-  home.file.".config/kitty/kitty.conf".source = ./config/kitty.conf;
+  home.username = "deddo";
+  home.homeDirectory = "/home/deddo";
+#  home.file.".config//alacritty.yml".source = ./config/alacritty.yml;
+#  home.file.".config/kitty/kitty.conf".source = ./config/kitty.conf;
 
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     ripgrep
-    zk
     exa
-    nodejs
     fzf
-    cowsay
-    fd
-    file
-    thefuck
     zsh-syntax-highlighting
     unzip
     progress
-    (nerdfonts.override { fonts = [ "Iosevka" ]; })
-    clippy
-    rust-analyzer
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+     
+    # dev tools
+    vscode    
+
     # Kubernetes Tools
-    kubectx
+    k9s
     kubectl
-    kubelogin
     kubernetes-helm
     # Build utilities
-    gnumake
-    cargo
+    
   ];
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
-  programs.direnv.enable = true;
+  programs.direnv.enable = false;
   programs.direnv.nix-direnv = {
-    enable = true;
-  };
-
-  # Terminal Emulators
-  # HACK currently disable because of OpenGL issues on non NixOS systems
-  programs.kitty = {
     enable = false;
-    font = { name = "Iosevka Term"; size = 17; };
-    theme = "One Dark";
-    settings = {
-      enable_audio_bell = false;
-      confirm_os_window_close = -1;
-    };
-    keybindings = {
-      "ctrl+equal" = "change_font_size all +2.0";
-      "ctrl+minus" = "change_font_size all -2.0";
-    };
   };
 
   programs.zsh = {
     enable = true;
     shellAliases = {
-      cl = "clear";
       ls = "exa";
-      vim = "nivm";
     };
     localVariables = {
-      EDITOR = "nvim";
+      EDITOR = "nano";
     };
     zplug = {
       enable = true;
@@ -88,17 +64,15 @@
       }
     ];
     initExtra = ''
-      ${builtins.readFile ./p10k.zsh}
-      ${builtins.readFile ./config.zsh}
-      ${builtins.readFile ./zsh/wsl.zsh}
+       ${builtins.readFile ./p10k.zsh}     
     '';
     enableCompletion = true;
     enableAutosuggestions = true;
   };
   programs.git = {
     enable = true;
-    userName = "Lucas Sas Brunschier";
-    userEmail = "lucassas@live.de";
+    userName = "Benedikt Bieberle";
+    userEmail = "git@sharkmails.net";
     extraConfig = {
       rebase = {
         autostash = true;
@@ -115,54 +89,5 @@
       "*.pyc"
     ];
   };
-  programs.tmux = {
-    enable = true;
-    secureSocket = false;
-    plugins = with pkgs.tmuxPlugins; [
-      yank
-      sensible
-      {
-        plugin = dracula;
-        extraConfig = ''
-          				set -g @dracula-show-battery false
-          				set -g @dracula-show-powerline true
-                  set -g @dracula-show-left-icon session
-          				set -g @dracula-refresh-rate 10
-          			'';
-      }
-    ];
-    extraConfig = ''
-      set-option -ga terminal-overrides ",xterm-256color:Tc"
-      setw -g pane-base-index 1
-      set -g mouse on
-      set -g base-index 1
-      bind e select-pane -U
-      bind n select-pane -D
-      bind h select-pane -L
-      bind i select-pane -R
-      bind v split-window -h
-      bind s split-window -v
-      bind k kill-pane
-      bind r source-file ~/.config/tmux/tmux.conf
-    '';
-  };
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    plugins = [
-      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-    ];
-    extraConfig = ''
-      ${builtins.readFile ./nvim/init.vim}
-    '';
-    extraLuaConfig = ''
-      ${builtins.readFile ./nvim/init.lua}
-    '';
-  };
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
-  };
+  
 }
