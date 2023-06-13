@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   home.username = "sirbubbls";
   home.homeDirectory = "/home/sirbubbls";
@@ -36,8 +35,13 @@
     gnumake
     cargo
   ];
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
   programs.home-manager.enable = true;
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv = {
+    enable = true;
+  };
 
   # Terminal Emulators
   # HACK currently disable because of OpenGL issues on non NixOS systems
