@@ -17,7 +17,7 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
      
     # dev tools
-    vscode    
+    # vscode    
 
     # Kubernetes Tools
     k9s
