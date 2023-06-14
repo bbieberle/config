@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  home.username = "deddo";
+  home.username = "detto";
   home.homeDirectory = "/home/detto";
 #  home.file.".config//alacritty.yml".source = ./config/alacritty.yml;
 #  home.file.".config/kitty/kitty.conf".source = ./config/kitty.conf;
