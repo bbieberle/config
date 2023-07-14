@@ -19,6 +19,9 @@
     # dev tools
     # vscode    
 
+    # stuff
+    magic-wormhole-rs
+
     # Kubernetes Tools
     k9s
     kubectl
